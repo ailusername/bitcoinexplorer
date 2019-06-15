@@ -103,4 +103,9 @@ public class BlockController {
         return blockAddressListDTO;
     }
 
+    @GetMapping("/getByess")
+    public BlockAddressListDTO getByess(@RequestParam String address){
+        return null;
+    }
+
 }
