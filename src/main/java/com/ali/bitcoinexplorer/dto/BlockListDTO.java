@@ -14,6 +14,7 @@ public class BlockListDTO {
 
     private Integer size;
 
+
     public String getBlockhash() {
         return blockhash;
     }

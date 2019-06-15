@@ -14,6 +14,7 @@ public class BlockGetDTO {
     private Double difficulty;
     private Integer sise;
 
+
     public String getBlockhash() {
         return blockhash;
     }
