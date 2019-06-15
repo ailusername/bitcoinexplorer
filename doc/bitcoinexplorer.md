@@ -106,41 +106,6 @@ url: /block/getByHeight?height={height}
 
 
 
-##m.4 根据区块大小获得详情 
-
-method：GET   
-url: /block/getBySize?size={size}
-
-
-```json
-successResponse：
-{
-    "blockhash": "0000000000000000002221bb70a15806c342209ce4764ee746d4f27ca786d4b3",
-    "heigth": 580582,
-    "prevBlock": "0000000000000000001323870563ec1ab6fadd4bf10f00b19d755cd9cb91eb24",
-    "nextBlock": "000000000000000000208d25e1f467df2050862658fe0f217d790ad7e735dbff",
-    "merkleRoot": "6d53e3757cc9376a973fb0a480879c9b08cc28973904dcfa646f7a7b9dc7f679",
-    "txSize": 1388,
-    "outputTotal": 17542.41455554,
-    "fees": 0.49897166,
-    "time": 1560519942086,
-    "difficulty": 7459680720542.3,
-    "sise": 2405
-}
-```
-| ResponseField     |     Type |   Description   | 
-| :--------------: | :--------:| :------: |
-|    blockhash      |   String  |  区块hash        |
-|    height         |   Integer |  区块高度        |
-|    prevBlock      |   String  |  前一个区块          |
-|    nextBlock      |   String  |  后一个区块       |
-|    merkleRoot     |   String  |  梅尔克数树        |
-|    txSize         |   Short   |  交易数量         |
-|    fees           |   Double  |  交易费用         |
-|    time           |   Long    |  交易时间        |   
-|    difficulty     |   Double  |  出块难度        |
-|    sise           |   Integer |  区块大小         |
-|    outputTotal    |   Double  |  总输出         |
 
 
 
@@ -167,5 +132,35 @@ successResponse：
 |    numberOfTrades |   Integer  |  交易次数        |
 |    totalNum       |   double   |  交易金额        |
 |    finalBTC       |   Integer  |  最终交易        |
+
+
+##m.6 根据区块地址获得详情 
+
+method：GET   
+url: /transaction/getTransactionList
+
+```json
+successResponse：
+    {
+        "age": "3minutes",
+        "amountBTC": 0,
+        "amountUSD": "241.02",
+        "tsHash": "8b134c88b099ba3092b6a6d2ef7770f631802044788fb9b0c51495f278e262fc"
+    },
+    {
+        "age": "8seconds",
+        "amountBTC": 0,
+        "amountUSD": "2.72",
+        "tsHash": "f78das88b099ba3092b6a6d2ef7770f631802044788fb9b0c51495f278e262fc"
+    }
+```
+
+| ResponseField     |     Type |   Description   | 
+| :--------------:  | :--------:| :------: |
+|    tsHash      |   String   |  交易区块hash        |
+|    age        |   String   |  時間        |
+|    amountBTC |   double  |  交易金額BTC     |
+|    amountUSD       |   String   |  交易金額USD        |
+
 
 
