@@ -1,7 +1,9 @@
 package com.ali.bitcoinexplorer.controller;
 
+import com.ali.bitcoinexplorer.api.BitcoinJsonRpcApi;
 import com.alibaba.fastjson.JSONObject;
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,21 +14,16 @@ import java.util.HashMap;
 import java.net.URL;
 
 @RestController
-@RequestMapping("/test1")
+@RequestMapping("/getBlockchain")
 @EnableAutoConfiguration
 public class TestController {
 
-    private JsonRpcHttpClient jsonRpcHttpClient;
-
-    @GetMapping("/test")
+    @Autowired
+    private BitcoinJsonRpcApi bitcoinJsonRpcApi;
+    @GetMapping("/getBlockchainInfo")
     public String test() throws Throwable {
-        HashMap<String, String> headers = new HashMap<>();
-        String authStrOrig = "zf:123456";
-        String authStr = Base64.getEncoder().encodeToString(authStrOrig.getBytes());
-        String authStrResult = String.format("Basic %s", authStr);
-        headers.put("Authorization", authStrResult);
-        JsonRpcHttpClient client = new JsonRpcHttpClient(new URL("http://localhost:18332"), headers);
-        client.invoke("getblockchaininfo", new Object[]{}, JSONObject.class);
-        return null;
+        JSONObject blockchainInfo = bitcoinJsonRpcApi.getBlockchainInfo();
+        String s = blockchainInfo.toJSONString();
+        return s;
     }
 }
