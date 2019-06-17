@@ -23,7 +23,7 @@ public class TestController {
     @GetMapping("/getBlockchainInfo")
     public String test() throws Throwable {
         JSONObject blockchainInfo = bitcoinJsonRpcApi.getBlockchainInfo();
-        String s = blockchainInfo.toJSONString();
-        return s;
+        String result = blockchainInfo.toJSONString();
+        return result;
     }
 }
