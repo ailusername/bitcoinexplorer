@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.net.URL;
 
 @RestController
-@RequestMapping("/getBlockchain")
+@RequestMapping("/test")
 @EnableAutoConfiguration
 public class TestController {
 
@@ -25,5 +25,12 @@ public class TestController {
         JSONObject blockchainInfo = bitcoinJsonRpcApi.getBlockchainInfo();
         String result = blockchainInfo.toJSONString();
         return result;
+    }
+
+    @GetMapping("/getrawtransaction")
+    public String  getrawtransaction() throws Throwable {
+        JSONObject jsonRpcApiBlockByHash = bitcoinJsonRpcApi.getBlockByHash("0000000000000bc3051e4ed64bf256b7101426e8c01ce18e424f9a246322bb70");
+        JSONObject jsonObject = bitcoinJsonRpcApi.getTransactionById("f71795f30d0b909ff8d8bcf61d542003d84abae994d8aca0e77de41134e36ffa");
+        return null;
     }
 }
