@@ -1,5 +1,6 @@
 package com.ali.bitcoinexplorer.api;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public interface BitcoinRestApi  {
     JSONObject getRestBlock(@PathVariable("blockhash") String blockhash);
 
     @GetMapping ("/rest/headers/{count}/{blockhash}.json")
-    JSONObject getRestHeaders(@PathVariable("count") Integer count,@PathVariable("blockhash") String blockhash);
+    JSONArray getRestHeaders(@PathVariable("count") Integer count, @PathVariable("blockhash") String blockhash);
 
     @GetMapping("/rest/tx/{blockhash}.json")
     JSONObject getRestTx(@PathVariable("blockhash")String blockhash);

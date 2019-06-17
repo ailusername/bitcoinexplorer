@@ -1,6 +1,7 @@
 package com.ali.bitcoinexplorer.controller;
 
 import com.ali.bitcoinexplorer.api.BitcoinRestApi;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -15,6 +16,10 @@ public class TempController {
     @Autowired
     private BitcoinRestApi bitcoinRestApi;
 
+    /**
+     *
+     * @return
+     */
     @GetMapping("/getBlockChainInfo")
     public String getBlockChainInfo(){
         JSONObject blockChainInfo = bitcoinRestApi.getBlockChainInfo();
@@ -28,7 +33,7 @@ public class TempController {
     }
 
     /**
-     * 2
+     *
      * @return
      */
 
@@ -39,15 +44,19 @@ public class TempController {
     }
 
     /**
-     * 4
+     *
      * @return
      */
-    @GetMapping("/getRestHeaders")
-    public JSONObject getRestHeaders(){
-        JSONObject restHeaders = bitcoinRestApi.getRestHeaders(5,"0000000000fc17f0e6f986fdaf4d2e206b3ddcbdc8866fb1a8fe6a7277df57b8");
+    @GetMapping("/getHeaders")
+    public JSONArray getRestHeaders(){
+        JSONArray restHeaders = bitcoinRestApi.getRestHeaders(6,"0000000000fc17f0e6f986fdaf4d2e206b3ddcbdc8866fb1a8fe6a7277df57b8");
         return restHeaders;
     }
 
+    /**
+     *
+     * @return
+     */
 
     @GetMapping("/getRestGetBlockHashByHeight")
     public String getRestGetBlockHashByHeight(){
@@ -56,7 +65,7 @@ public class TempController {
     }
 
     /**
-     * 3
+     *
      * @return
      */
     @GetMapping("/getRestBlock")
@@ -67,7 +76,7 @@ public class TempController {
 
     /**
      *
-     *1
+     *
      * @return
      */
     @GetMapping("/getRestMemPoolInfo")
@@ -77,7 +86,7 @@ public class TempController {
     }
     /**
      *
-     *1
+     *
      * @return
      */
     @GetMapping("/getRestTx")
