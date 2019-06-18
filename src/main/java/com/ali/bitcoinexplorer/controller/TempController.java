@@ -27,7 +27,9 @@ public class TempController {
 
     @GetMapping("/synchrBlock")
     public String synchrBlock() {
-        String provBlockHash = "00000000000000af3bf6e396a265c9266f8a47611b0714b92cd1c4048b7f1f62";
+//        String provBlockHash = "00000000000000af3bf6e396a265c9266f8a47611b0714b92cd1c4048b7f1f62";
+        String provBlockHash = "0000000000029f08ac10391dba1a70db8049efac60f2596715b0c13694744167";
+
         bitcoinService.synchrBlock(provBlockHash);
         return null;
     }
