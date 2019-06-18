@@ -25,6 +25,7 @@ public class BitcoinServiceImpl implements BitcoinService {
     private BlockMapper blockMapper;
 
     @Override
+    @Async
     public void synchrBlock(String blockhash) {
         String provBlockHash = blockhash;
         while (provBlockHash != null && !provBlockHash.isEmpty()) {

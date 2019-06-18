@@ -1,6 +1,9 @@
 package com.ali.bitcoinexplorer.dao;
 
+import com.ali.bitcoinexplorer.dto.BlockListDTO;
 import com.ali.bitcoinexplorer.po.Block;
+
+import java.util.List;
 
 public interface BlockMapper {
     int deleteByPrimaryKey(String blockhash);
@@ -14,4 +17,8 @@ public interface BlockMapper {
     int updateByPrimaryKeySelective(Block record);
 
     int updateByPrimaryKey(Block record);
+
+    //    ----------------
+    List<Block> selectLatelyBlocks();
+
 }
