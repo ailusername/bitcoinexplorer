@@ -1,6 +1,8 @@
 package com.ali.bitcoinexplorer.controller;
 
 import com.ali.bitcoinexplorer.api.BitcoinRestApi;
+import com.ali.bitcoinexplorer.dao.BlockMapper;
+import com.ali.bitcoinexplorer.service.BitcoinService;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/temp")
+@RequestMapping("/prov")
 @EnableAutoConfiguration
 public class TempController {
     @Autowired
     private BitcoinRestApi bitcoinRestApi;
+
+
+    @Autowired
+    private BlockMapper blockMapper;
+
+    @Autowired
+    private BitcoinService bitcoinService;
+
+    @GetMapping("/synchrBlock")
+    public String synchrBlock() {
+        String provBlockHash = "00000000000000af3bf6e396a265c9266f8a47611b0714b92cd1c4048b7f1f62";
+        bitcoinService.synchrBlock(provBlockHash);
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      *
@@ -94,4 +130,6 @@ public class TempController {
         JSONObject restTx = bitcoinRestApi.getRestTx("28e021d33edebe831c985dfcbaabfa13d3cd3f0642a8db3bbd148caaf31bf1ae");
         return restTx.toJSONString();
     }
+
+
 }

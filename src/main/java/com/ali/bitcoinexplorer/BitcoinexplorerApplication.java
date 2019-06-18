@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan("com.ali.bitcoinexplorer.dao")
 @EnableFeignClients
 @EnableScheduling
+
 public class BitcoinexplorerApplication {
 
 	public static void main(String[] args) {
