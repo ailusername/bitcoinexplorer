@@ -3,6 +3,7 @@ package com.ali.bitcoinexplorer.service.impl;
 import com.ali.bitcoinexplorer.api.BitcoinRestApi;
 import com.ali.bitcoinexplorer.dao.BlockMapper;
 import com.ali.bitcoinexplorer.dao.TransactionMapper;
+import com.ali.bitcoinexplorer.dto.BlockListDTO;
 import com.ali.bitcoinexplorer.po.Block;
 import com.ali.bitcoinexplorer.po.Transaction;
 import com.ali.bitcoinexplorer.service.BitcoinService;
@@ -15,8 +16,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 @Service
 public class BitcoinServiceImpl implements BitcoinService {
@@ -64,7 +64,6 @@ public class BitcoinServiceImpl implements BitcoinService {
             provBlockHash = block.getNextBlock();
         }
         logger.info("show time end synchr Block ");
-
     }
 
     @Override
@@ -80,6 +79,36 @@ public class BitcoinServiceImpl implements BitcoinService {
         transactionMapper.insert(transaction);
 
     }
+
+    @Override
+    public void synchrTxDetail(JSONObject txJson) {
+        JSONArray vouts = txJson.getJSONArray("vout");
+        synchrTxDetailVout(vouts);
+        JSONArray vins = txJson.getJSONArray("vin");
+        synchrTxDetailVout(vins);
+    }
+
+    @Override
+    public void synchrTxDetailVout(JSONArray vouts) {
+
+        ArrayList<String> list = new ArrayList<String>();
+
+        for (Object vout : vouts) {
+            JSONObject jsonObject = new JSONObject((LinkedHashMap) vout);
+            Float value = jsonObject.getFloat("value");
+            Integer n = jsonObject.getInteger("n");
+            JSONArray scriptPubKeys = jsonObject.getJSONArray("scriptPubKey");
+            for (Object scriptPubKey : scriptPubKeys) {
+
+            }
+        }
+    }
+
+    @Override
+    public void synchrTxDetailVin(JSONArray vins) {
+
+    }
+//custom
 
 
 }
