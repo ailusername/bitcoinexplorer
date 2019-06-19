@@ -6,6 +6,7 @@ import com.ali.bitcoinexplorer.dao.TransactionMapper;
 import com.ali.bitcoinexplorer.dto.BlockListDTO;
 import com.ali.bitcoinexplorer.po.Block;
 import com.ali.bitcoinexplorer.po.Transaction;
+import com.ali.bitcoinexplorer.po.TransactionDetail;
 import com.ali.bitcoinexplorer.service.BitcoinService;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -81,31 +82,29 @@ public class BitcoinServiceImpl implements BitcoinService {
     }
 
     @Override
-    public void synchrTxDetail(JSONObject txJson) {
+    public void synchrTxDetail(JSONObject txJson, String txHash) {
         JSONArray vouts = txJson.getJSONArray("vout");
-        synchrTxDetailVout(vouts);
+        synchrTxDetailVout(vouts, txHash);
         JSONArray vins = txJson.getJSONArray("vin");
-        synchrTxDetailVout(vins);
+        synchrTxDetailVout(vins, txHash);
     }
 
     @Override
-    public void synchrTxDetailVout(JSONArray vouts) {
-
-        ArrayList<String> list = new ArrayList<String>();
-
+    public void synchrTxDetailVout(JSONArray vouts, String txHash) {
+        Transaction transaction = new Transaction();
+        TransactionDetail transactionDetail = new TransactionDetail();
         for (Object vout : vouts) {
             JSONObject jsonObject = new JSONObject((LinkedHashMap) vout);
-            Float value = jsonObject.getFloat("value");
-            Integer n = jsonObject.getInteger("n");
-            JSONArray scriptPubKeys = jsonObject.getJSONArray("scriptPubKey");
-            for (Object scriptPubKey : scriptPubKeys) {
+            transactionDetail.setAddress(jsonObject.getJSONObject("scriptPubKey").getString("addresses"));
 
+            transactionDetail.setTxhash("txHash");
+//
             }
         }
-    }
+
 
     @Override
-    public void synchrTxDetailVin(JSONArray vins) {
+    public void synchrTxDetailVin(JSONArray vins, String txHash) {
 
     }
 //custom
