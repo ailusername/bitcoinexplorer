@@ -7,7 +7,9 @@ import java.util.Date;
 
 public interface BitcoinService {
 
-    void synchrBlock(String blockhash) throws Throwable;
+    void syncBlockchainFromHash(String blockhash) throws Throwable;
+
+    String synchrBlock(String blockhash) throws Throwable;
 
     void syncTx(JSONObject txJson, String blockhash, Date time, Integer confirmations) throws Throwable;
     //    custom
