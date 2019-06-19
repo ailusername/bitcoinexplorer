@@ -37,6 +37,12 @@ public class TempController {
         bitcoinService.synchrBlock(provBlockHash);
         return null;
     }
+//    @GetMapping("/txBlockHash")
+//    public String txBlockHash() {
+//        String txBlockHash = "5b9a5753bf2ac3dd507c9b57b2581767cc96d94981fd90c25a3d8c3f0c00fdca";
+//        bitcoinService.synchrBlock(txBlockHash);
+//        return null;
+//    }
 
 
 
