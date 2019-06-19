@@ -11,10 +11,10 @@ public interface BitcoinService {
 
     void syncTx(JSONObject txJson, String blockhash, Date time, Integer confirmations);
     //    custom
-    void synchrTxDetail(JSONObject txJson, String txHash);
+    void synchrTxDetail(JSONObject txJson, String txid);
 
-    void synchrTxDetailVout(JSONArray vouts, String txHash);
+    void synchrTxDetailVout(JSONArray vouts, String txid);
 
-    void synchrTxDetailVin(JSONArray vins, String txHash);
+    void synchrTxDetailVin(JSONArray vins, String txid);
 
 }
