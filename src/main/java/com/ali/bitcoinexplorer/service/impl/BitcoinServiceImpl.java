@@ -1,5 +1,6 @@
 package com.ali.bitcoinexplorer.service.impl;
 
+import com.ali.bitcoinexplorer.api.BitcoinJsonRpcApi;
 import com.ali.bitcoinexplorer.api.BitcoinRestApi;
 import com.ali.bitcoinexplorer.dao.BlockMapper;
 import com.ali.bitcoinexplorer.dao.TransactionDetailMapper;
@@ -38,10 +39,12 @@ public class BitcoinServiceImpl implements BitcoinService {
     @Autowired
     private TransactionDetailMapper transactionDetailMapper;
 
+    @Autowired
+    private BitcoinJsonRpcApi bitcoinJsonRpcApi;
     @Override
     @Async
     @Transactional
-    public void synchrBlock(String blockhash) {
+    public void synchrBlock(String blockhash) throws Throwable {
         String provBlockHash = blockhash;
         while (provBlockHash != null && !provBlockHash.isEmpty()) {
             JSONObject restBlock = bitcoinRestApi.getRestBlock(provBlockHash);
@@ -73,7 +76,7 @@ public class BitcoinServiceImpl implements BitcoinService {
 
     @Override
     @Transactional
-    public void syncTx(JSONObject txJson, String blockhash, Date time, Integer confirmations) {
+    public void syncTx(JSONObject txJson, String blockhash, Date time, Integer confirmations) throws Throwable {
         Transaction transaction = new Transaction();
         String txid = txJson.getString("txid");
         transaction.setTxhash(txid);
@@ -90,7 +93,7 @@ public class BitcoinServiceImpl implements BitcoinService {
 
 
     @Override
-    public void synchrTxDetail(JSONObject txJson, String txid) {
+    public void synchrTxDetail(JSONObject txJson, String txid) throws Throwable {
         JSONArray vouts = txJson.getJSONArray("vout");
         synchrTxDetailVout(vouts, txid);
         JSONArray vins = txJson.getJSONArray("vin");
@@ -98,6 +101,7 @@ public class BitcoinServiceImpl implements BitcoinService {
     }
 
     @Override
+    @Transactional
     public void synchrTxDetailVout(JSONArray vouts, String txid) {
         for (Object voutObj : vouts) {
             JSONObject jsonObject = new JSONObject((LinkedHashMap) voutObj);
@@ -117,10 +121,31 @@ public class BitcoinServiceImpl implements BitcoinService {
 
 
     @Override
-    public void synchrTxDetailVin(JSONArray vins, String txHash) {
+    @Transactional
+    public void synchrTxDetailVin(JSONArray vins, String txid) throws Throwable {
+        for (Object vinObj : vins) {
+            JSONObject jsonObject = new JSONObject((LinkedHashMap) vinObj);
+            String vinTxid = jsonObject.getString("txid");
+            Integer n = jsonObject.getInteger("vout");
+            if (vinTxid != null) {
+                JSONObject vinTxJson = bitcoinJsonRpcApi.getTransactionById(vinTxid);
+                JSONArray vouts = vinTxJson.getJSONArray("vout");
+                JSONObject utxoJson = vouts.getJSONObject(n);
 
-    }
+                TransactionDetail txDetail = new TransactionDetail();
+                txDetail.setAmount(-utxoJson.getDouble("value"));
+                txDetail.setTxhash(txid);
+                txDetail.setType((byte) TxDetailType.Send.ordinal());
+                JSONObject scriptPubKey = utxoJson.getJSONObject("scriptPubKey");
+                JSONArray addresses = scriptPubKey.getJSONArray("addresses");
+                if (addresses != null) {
+                    String address = addresses.getString(0);
+                    txDetail.setAddress(address);
+                }
+                transactionDetailMapper.insert(txDetail);
+            }
+        }
 //custom
 
-
+    }
 }

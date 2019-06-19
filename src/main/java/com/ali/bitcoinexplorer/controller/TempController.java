@@ -25,22 +25,22 @@ public class TempController {
     private BitcoinService bitcoinService;
 
     @GetMapping("/synchrBlock")
-    public String synchrBlock() {
+    public String synchrBlock() throws Throwable {
         String provBlockHash = "00000000000000af3bf6e396a265c9266f8a47611b0714b92cd1c4048b7f1f62";
         bitcoinService.synchrBlock(provBlockHash);
         return null;
     }
 
     @GetMapping("/provBlockHash")
-    public String provBlockHash() {
+    public String provBlockHash() throws Throwable {
         String provBlockHash = "0000000000029f08ac10391dba1a70db8049efac60f2596715b0c13694744167";
         bitcoinService.synchrBlock(provBlockHash);
         return null;
     }
 
     @GetMapping("/txBlockHash")
-    public String txBlockHash() {
-        String txBlockHash = "0000000000000002388518395fc13ca1f4630a675802612925b51ed0e3db058b";
+    public String txBlockHash() throws Throwable {
+        String txBlockHash = "0000000000000f9b0410f69ccdf1521647fd03e0e2703bca7659d0f196f2dc8f";
         bitcoinService.synchrBlock(txBlockHash);
         return null;
     }
