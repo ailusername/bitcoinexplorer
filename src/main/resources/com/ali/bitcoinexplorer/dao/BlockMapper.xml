@@ -145,7 +145,7 @@
     <include refid="Base_Column_List"/>
     from block
     order by height desc
-    limit 5
+    limit 10
   </select>
 
 </mapper>
