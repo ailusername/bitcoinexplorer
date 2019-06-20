@@ -19,4 +19,5 @@ public interface BitcoinService {
 
     void synchrTxDetailVin(JSONArray vins, String txid) throws Throwable;
 
+
 }
