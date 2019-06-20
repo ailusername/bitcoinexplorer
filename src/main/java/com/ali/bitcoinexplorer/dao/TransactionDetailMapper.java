@@ -1,6 +1,7 @@
 package com.ali.bitcoinexplorer.dao;
 
 import com.ali.bitcoinexplorer.po.TransactionDetail;
+import org.apache.ibatis.annotations.Param;
 
 public interface TransactionDetailMapper {
     int deleteByPrimaryKey(Long txDetailId);
@@ -14,4 +15,7 @@ public interface TransactionDetailMapper {
     int updateByPrimaryKeySelective(TransactionDetail record);
 
     int updateByPrimaryKey(TransactionDetail record);
+
+    Double getBalance(@Param("address") String address);
+
 }

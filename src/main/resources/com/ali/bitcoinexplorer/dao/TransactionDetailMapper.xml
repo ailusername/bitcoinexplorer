@@ -1,88 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ali.bitcoinexplorer.dao.TransactionDetailMapper">
-  <resultMap id="BaseResultMap" type="com.ali.bitcoinexplorer.po.TransactionDetail">
-    <id column="tx_detail_id" jdbcType="BIGINT" property="txDetailId" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="amount" jdbcType="DOUBLE" property="amount" />
-    <result column="type" jdbcType="TINYINT" property="type" />
-    <result column="txhash" jdbcType="CHAR" property="txhash" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.ali.bitcoinexplorer.po.TransactionDetail">
+        <id column="tx_detail_id" jdbcType="BIGINT" property="txDetailId"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="amount" jdbcType="DOUBLE" property="amount"/>
+        <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="txhash" jdbcType="CHAR" property="txhash"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     tx_detail_id, address, amount, type, txhash
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from transaction_detail
-    where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from transaction_detail
+        where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from transaction_detail
     where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.ali.bitcoinexplorer.po.TransactionDetail">
+    <insert id="insert" parameterType="com.ali.bitcoinexplorer.po.TransactionDetail">
     insert into transaction_detail (tx_detail_id, address, amount, 
       type, txhash)
     values (#{txDetailId,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, 
       #{type,jdbcType=TINYINT}, #{txhash,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ali.bitcoinexplorer.po.TransactionDetail">
-    insert into transaction_detail
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="txDetailId != null">
-        tx_detail_id,
-      </if>
-      <if test="address != null">
-        address,
-      </if>
-      <if test="amount != null">
-        amount,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="txhash != null">
-        txhash,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="txDetailId != null">
-        #{txDetailId,jdbcType=BIGINT},
-      </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="amount != null">
-        #{amount,jdbcType=DOUBLE},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=TINYINT},
-      </if>
-      <if test="txhash != null">
-        #{txhash,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ali.bitcoinexplorer.po.TransactionDetail">
-    update transaction_detail
-    <set>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="amount != null">
-        amount = #{amount,jdbcType=DOUBLE},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=TINYINT},
-      </if>
-      <if test="txhash != null">
-        txhash = #{txhash,jdbcType=CHAR},
-      </if>
-    </set>
-    where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ali.bitcoinexplorer.po.TransactionDetail">
+    <insert id="insertSelective" parameterType="com.ali.bitcoinexplorer.po.TransactionDetail">
+        insert into transaction_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="txDetailId != null">
+                tx_detail_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="txhash != null">
+                txhash,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="txDetailId != null">
+                #{txDetailId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DOUBLE},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="txhash != null">
+                #{txhash,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ali.bitcoinexplorer.po.TransactionDetail">
+        update transaction_detail
+        <set>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DOUBLE},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="txhash != null">
+                txhash = #{txhash,jdbcType=CHAR},
+            </if>
+        </set>
+        where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ali.bitcoinexplorer.po.TransactionDetail">
     update transaction_detail
     set address = #{address,jdbcType=VARCHAR},
       amount = #{amount,jdbcType=DOUBLE},
@@ -90,4 +90,10 @@
       txhash = #{txhash,jdbcType=CHAR}
     where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
   </update>
+    <!--custom-->
+    <select id="getBalance" parameterType="java.lang.String" resultType="java.lang.Double">
+    SELECT sum(amount) FROM transaction_detail
+    where address = #{address}
+  </select>
+
 </mapper>

@@ -44,6 +44,7 @@ public class BitcoinServiceImpl implements BitcoinService {
 
 
     @Override
+    @Async
     public void syncBlockchainFromHash(String blockhash) throws Throwable {
         logger.info("begin to sync blockchain from {}", blockhash);
         String tempBlockhash = blockhash;
@@ -56,7 +57,7 @@ public class BitcoinServiceImpl implements BitcoinService {
     }
 
     @Override
-    @Async
+
     @Transactional
     public String synchrBlock(String blockhash) throws Throwable {
         JSONObject blockJson = bitcoinRestApi.getRestBlock(blockhash);
