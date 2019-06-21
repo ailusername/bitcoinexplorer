@@ -4,11 +4,10 @@ public class TransactionListDTO {
 
     private String TsHash;
 
-    private String age;
+    private Long age;
 
-    private  double amountBTC;
+    private Double amountBTC;
 
-    private  String amountUSD;
 
     public String getTsHash() {
         return TsHash;
@@ -18,27 +17,19 @@ public class TransactionListDTO {
         TsHash = tsHash;
     }
 
-    public String getAge() {
+    public Long getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Long age) {
         this.age = age;
     }
 
-    public double getAmountBTC() {
+    public Double getAmountBTC() {
         return amountBTC;
     }
 
-    public void setAmountBTC(double amountBTC) {
+    public void setAmountBTC(Double amountBTC) {
         this.amountBTC = amountBTC;
-    }
-
-    public String getAmountUSD() {
-        return amountUSD;
-    }
-
-    public void setAmountUSD(String amountUSD) {
-        this.amountUSD = amountUSD;
     }
 }

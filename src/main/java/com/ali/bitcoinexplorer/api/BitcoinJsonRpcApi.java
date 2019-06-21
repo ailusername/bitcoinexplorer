@@ -15,7 +15,5 @@ public interface BitcoinJsonRpcApi {
 
     JSONObject getMempoolContents() throws IOException;
 
-    JSONObject getTransactionList(String txid) throws Throwable;
-
 
 }

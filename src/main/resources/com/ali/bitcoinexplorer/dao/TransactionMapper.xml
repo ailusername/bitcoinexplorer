@@ -114,4 +114,11 @@
       confirmations = #{confirmations,jdbcType=INTEGER}
     where txhash = #{txhash,jdbcType=CHAR}
   </update>
+
+  <!---->
+  <select id="getTransactionList1" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from transaction limit 5
+  </select>
 </mapper>

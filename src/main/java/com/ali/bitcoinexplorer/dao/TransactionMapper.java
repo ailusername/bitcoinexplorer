@@ -18,6 +18,6 @@ public interface TransactionMapper {
 
     int updateByPrimaryKey(Transaction record);
 
-    List<TransactionListDTO> getTransactionList();
 
+    List<Transaction> getTransactionList1();
 }
