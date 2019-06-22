@@ -20,9 +20,7 @@ public class BlockServiceImpl implements BlockService {
     @Override
     public List<BlockListDTO> getLatelyBlocks() {
         ArrayList<BlockListDTO> blockListDTOS = new ArrayList<>();
-
         List<Block> blocks = blockMapper.selectLatelyBlocks();
-
         for (Block block : blocks) {
             BlockListDTO blockListDTO = new BlockListDTO();
             blockListDTO.setBlockhash(block.getBlockhash());
@@ -34,4 +32,13 @@ public class BlockServiceImpl implements BlockService {
         }
         return blockListDTOS;
     }
+
+    @Override
+    public Block getSearchHeight(Integer height) {
+        Block blockHeight = blockMapper.getBlockHeight(height);
+        return blockHeight;
+    }
+
+
+
 }

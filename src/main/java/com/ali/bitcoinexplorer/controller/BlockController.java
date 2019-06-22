@@ -2,6 +2,7 @@ package com.ali.bitcoinexplorer.controller;
 
 import com.ali.bitcoinexplorer.dto.BlockGetDTO;
 import com.ali.bitcoinexplorer.dto.BlockListDTO;
+import com.ali.bitcoinexplorer.po.Block;
 import com.ali.bitcoinexplorer.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -62,22 +63,11 @@ public class BlockController {
         return blockGetDTO;
     }
 
-    @GetMapping("/getByHeight")
-    public BlockGetDTO getByHeight(@RequestParam Integer height){
-        BlockGetDTO blockGetDTO = new BlockGetDTO();
-        blockGetDTO.setBlockhash("0000000000000000001977cc76a51d81f9dbcda92f05c17ae649423c8ae5857f");
-        blockGetDTO.setHeigth(580582);
-        blockGetDTO.setPrevBlock("000000000000000000062da626194c52e82547cb36e0e713efdb9c9214516aad");
-        blockGetDTO.setNextBlock("00000000000000000011723cc650765b9788f9b193d938f49e200569e9b03941");
-        blockGetDTO.setMerkleRoot("76ccc53957b99aa552a019ce93de939d2f5a6e5ee4f01161aa335f71ae73500e");
-        blockGetDTO.setTime(new Date().getTime());
-        blockGetDTO.setFees(0.49897166);
-        blockGetDTO.setTxSize((short)1200.753);
-        blockGetDTO.setDifficulty(7459680720542.3);
-        blockGetDTO.setSise(2455);
-        blockGetDTO.setOutputTotal(4411.45080838);
-        return blockGetDTO;
-    }
+//    @GetMapping("/getByHeight")
+//    public Block getByHeight(@RequestParam Integer height){
+//        Block searchHeight = blockService.getSearchHeight(height);
+//        return searchHeight;
+//    }
 
 
 

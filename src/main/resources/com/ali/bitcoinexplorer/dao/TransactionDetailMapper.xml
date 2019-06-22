@@ -96,4 +96,13 @@
     where address = #{address}
   </select>
 
+
+    <!--selectByAddress-->
+    <select id="selectByAddress" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from transaction_detail
+        where address = #{address}
+    </select>
+
 </mapper>

@@ -2,6 +2,7 @@ package com.ali.bitcoinexplorer.dao;
 
 import com.ali.bitcoinexplorer.dto.BlockListDTO;
 import com.ali.bitcoinexplorer.po.Block;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +22,7 @@ public interface BlockMapper {
     //    ----------------
     List<Block> selectLatelyBlocks();
 
+    Block getBlockHeight(@Param("height") Integer height);
+
+    Block selectSearchByHash(String target);
 }
